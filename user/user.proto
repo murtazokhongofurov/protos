@@ -1,0 +1,27 @@
+syntax = "proto3";
+package store;
+
+
+service UserService {
+    rpc CreateUser(User) returns (User);
+    rpc GetUserById(GetUser) returns (User);
+    rpc UpdateUser(User) returns (User);
+    rpc DeleteUser(GetUser) returns (Empty);
+}
+
+message Empty {}
+message GetUser {
+    string id = 1;
+}
+message Users {
+    repeated User users = 1;
+}
+
+message User {
+    string id = 1;
+    string full_name = 2;
+    string bio = 3;
+    string phone_number = 4;
+    string password = 5;
+}
+

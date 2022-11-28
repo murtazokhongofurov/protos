@@ -1,0 +1,48 @@
+syntax = "proto3";
+package store;
+
+service StoreService{
+    rpc CreateStore(StoreRequest) returns (StoreResponse);
+    rpc GetStoreInfo(StoreId) returns (StoreResponse);
+    rpc UpdateStore(StoreResponse) returns (StoreResponse);
+    rpc DeleteStore(StoreId) returns (Empty);
+
+    // rpc AddProductToStore(StoresProducts) returns (StoreProductInfo);
+}
+
+message Empty {}
+message StoreId {
+    string store_id = 1;
+}
+message Stores{
+    repeated StoreResponse stores = 1;
+}
+message StoreRequest {
+    string name = 1;
+    repeated AddressRequest addresses = 2;
+}
+message StoreResponse {
+    string id = 1;
+    string name = 2;
+    repeated AddressResponse addresses = 3;
+}
+message AddressId {
+    string id = 1;
+}
+message AddressRequest {
+  string country = 1;
+  string street = 2;
+}
+message AddressResponse {
+    string id = 1;
+    string store_id = 2;
+    string country = 3;
+    string street = 4;
+}
+message Product {
+    string id = 1;
+    string name = 2;
+    string model = 3;
+    float price = 4;
+    int64 amount = 5;
+}
